@@ -3,7 +3,7 @@ package com.ljy.jpastudy.services.product.application;
 import com.ljy.jpastudy.services.product.application.model.ProductDto;
 import com.ljy.jpastudy.services.product.application.model.ProductImageDto;
 import com.ljy.jpastudy.services.product.application.model.ProductResource;
-import com.ljy.jpastudy.services.product.application.model.ProductSearchDto;
+import com.ljy.jpastudy.services.product.application.model.ProductSearchCondition;
 import com.ljy.jpastudy.services.product.domain.ProductImageRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class ProductServiceTest {
         productService.create(productDto);
         productService.create(productDto);
 
-        ProductSearchDto productSearchDto = ProductSearchDto.of(0, 10);
+        ProductSearchCondition productSearchDto = ProductSearchCondition.of(0, 10);
 
         // when
         List<ProductResource> products = productService.getProducts(productSearchDto);

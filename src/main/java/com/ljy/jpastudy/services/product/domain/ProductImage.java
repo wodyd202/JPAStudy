@@ -37,4 +37,5 @@ public class ProductImage {
     public static ProductImage of(String imagePath, int ordering){
         return new ProductImage(imagePath, ordering);
     }
+
 }

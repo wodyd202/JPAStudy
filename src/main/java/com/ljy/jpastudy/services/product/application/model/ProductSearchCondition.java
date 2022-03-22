@@ -6,11 +6,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class ProductSearchDto {
+public class ProductSearchCondition {
     private int page;
     private int size;
 
-    public static ProductSearchDto of(int page, int size){
-        return new ProductSearchDto(page, size);
+    public static ProductSearchCondition of(int page, int size){
+        return new ProductSearchCondition(page, size);
     }
 }

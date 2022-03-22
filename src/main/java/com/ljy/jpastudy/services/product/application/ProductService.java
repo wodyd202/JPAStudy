@@ -32,9 +32,9 @@ public class ProductService {
         return ProductResource.from(product);
     }
 
-    private final static List<ProductResource> EMPTY_PRODUCT_RESOURCE_LIST = Collections.EMPTY_LIST;
+    private static final List<ProductResource> EMPTY_PRODUCT_RESOURCE_LIST = Collections.EMPTY_LIST;
     @Transactional(readOnly = true)
-    public List<ProductResource> getProducts(ProductSearchDto productSearchDto) {
+    public List<ProductResource> getProducts(ProductSearchCondition productSearchDto) {
         List<ProductRecord> products = productRepository.findAll(productSearchDto);
         Set<Long> productIds = products.stream()
                 .map(ProductRecord::getId)

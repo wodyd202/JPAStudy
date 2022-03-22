@@ -3,6 +3,7 @@ package com.ljy.jpastudy.services.product.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,19 +27,23 @@ public class Product {
     @Embedded
     private ProductImages productImages;
 
+    @BatchSize(size = 10)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    private List<Review> reviews;
+
     private Product(String name, long price, List<ProductImage> productImages) {
         this.name = name;
         this.price = price;
         setProductImages(productImages);
     }
 
-    public static Product of(String name, long price, List<ProductImage> productImages){
-        return new Product(name,price, productImages);
-    }
-
     private void setProductImages(List<ProductImage> productImages){
         productImages.forEach(productImage -> productImage.setProduct(this));
         this.productImages = ProductImages.listOf(productImages);
+    }
+
+    public static Product of(String name, long price, List<ProductImage> productImages){
+        return new Product(name,price, productImages);
     }
 
     public List<ProductImage> getProductImages(){
